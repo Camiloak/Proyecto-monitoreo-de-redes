@@ -1,0 +1,286 @@
+<!DOCTYPE HTML5> <!--Declara el tipo de documento como HTML5, lo que ayuda al navegador a interpretar correctamente el código.-->
+<html lang="en">    <!--Inicia el documento HTML y establece el idioma principal de la página en inglés -->
+<head>  <!--Define la sección de la cabecera del documento, que contiene metadatos y enlaces a recursos externos.-->
+    <meta charset="UTF-8">  <!--Define la sección de la cabecera del documento, que contiene metadatos y enlaces a recursos externos.-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Define la configuración de la vista en dispositivos móviles, asegurando que el ancho del contenido se ajuste al tamaño de la pantalla y que la escala inicial sea 1.0.-->
+    <title>Document</title> <!--Define el título de la página, que aparece en la pestaña del navegador.-->
+    <link rel="stylesheet" href="style.css"> <!--Enlaza un archivo de hoja de estilos CSS (style.css), el cual se usará para definir la apariencia de la página.-->
+
+
+</head> <!--Cierra la sección <head>.-->
+<body> <!--Inicia la sección del cuerpo del documento, donde se incluirá el contenido visible de la página.--> 
+    
+    <header class="header"> <!--Define el encabezado de la página y le asigna la clase header, lo que permite aplicarle estilos con CSS.-->
+       
+        <div class="menu container"> <!--Este es un contenedor del menu que contendra todo para dar los estilos del menu de la pagina-->
+            <a href="#" class="Logo">Universidad Catolica de Colombia</a><!-- <a> → Es un enlace (como cuando haces clic en algo y te lleva a otra página).
+                href="#" → El # significa que, por ahora, el enlace no lleva a ningún lado (es un lugar vacío).
+                class="Logo" → "Logo" es un nombre que podemos usar en CSS para cambiar su estilo (como ponerle color o hacerlo más grande).
+                Logo → Es el texto que se verá en la página (puodemos cambiarlo por el nombre de nuestro sitio, por ejemplo, "Mi Página").
+                -->
+            <input type="checkbox" id="menu"/> <!--Un input de tipo checkbox, que se usa en menús de navegación responsivos para controlar si el menú está abierto o cerrado.-->
+            <label for="menu"> <!--Este label está asociado con el checkbox (id="menu"), permitiendo que al hacer clic en la imagen del menú se active el checkbox.-->
+                <img src="imagenes/menu.png" class="menu-icono" alt=""> <!--Inserta una imagen de menu.png-->
+            </label><!--Cierra la etiqueta label.-->
+            <nav class="navbar"> <!--Definimos una barra de navegación con la clase navbar.-->
+                <ul> <!--Inicia una lista desordenada (ul) para los elementos del menú.-->
+                    <li><a href="#">Inicio</a></li> <!--Creamos un enlace de Inicio-->
+                    <li><a href="#">Servicios</a></li> <!--Creamos un enlace de Servicios-->
+                    <li><a href="#">Seguridad</a></li> <!--Creamos un enlace de Seguridad-->
+                    <li><a href="#">Contacto</a></li> <!--Creamos un enlace de Contacto-->
+
+                </ul> <!--Cierra la lista del menú. -->
+
+
+            </nav> <!--Cierra la barra de navegacion-->
+
+          
+        </div> <!--Cierra el div contenedor del menú.-->
+
+
+        <div class="header-content container"> <!--Este va a ser nuestro contenedor de titulo y parrafo-->
+
+            <h1>Cyber Industries</h1><!--Titulo-->
+            <p><!--Parrafo-->
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                Tempore unde vitae debitis exercitationem quidem deleniti ab? 
+                Voluptatem possimus aliquam officiis eveniet, 
+                quas mollitia enim reprehenderit veniam error modi dolore ipsam?
+
+            </p>
+            <a href="#"class="btn-1">Informacion</a> <!--Creamos un enlace de Informacion-->
+
+        </div>
+
+    </header> <!--Cierra el encabezado-->
+
+
+
+    <section class="IA"><!--Creamos la seccion donde iran las imagenes y textos de cada uno de los tipos de ataquer ciberneticos-->
+
+        <img class="IA-img" src="imagenes/imageniniciopng.png" alt="">
+
+        <div class="IA-content container"><!--Clase para contenedor de primera imagen con su parrafo-->
+
+            <h2>Diferentes tipos de ataques</h2>
+            <p class="txt-p">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+                Ipsam repudiandae reiciendis officiis quam mollitia necessitatibus iste, 
+                eaque pariatur et qui similique exercitationem nulla rem, 
+                laboriosam ut illo dolorem aliquid eligendi?
+            </p>
+
+            </div class="IA-group"><!--Clase para contenedor de las tres imagenes siguientes imagen con su parrafo-->
+
+
+                <div class="Cyber-1">   
+                    <img src="imagenes/c1.png" alt="">
+                    <h3>Ataques lorem</h3>
+                    <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    Id voluptatem modi dicta, dolores ab corporis hic.
+                    </p>
+                </div>
+                <div class="Cyber-1">   
+                    <img src="imagenes/c1.png" alt="">
+                    <h3>Ataques lorem</h3>
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                        Id voluptatem modi dicta, dolores ab corporis hic.
+                    </p>
+                </div>
+                <div class="Cyber-1">   
+                    <img src="imagenes/c1.png" alt="">
+                    <h3>Ataques lorem</h3>
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                        Id voluptatem modi dicta, dolores ab corporis hic.
+                    <p>
+                </div>
+            </div>
+            <a href="#" class="btn-1"Informacion></a><!--Creamos el enlace de Informacion-->
+        </div>
+
+
+    </section>
+
+    <main class="Servicios"><!--Aqui ira la informacion principal de nuestra pagina-->
+
+        <div class="Servicios-content container">
+            <h2>Servicios que ofrecemos</h2>
+
+            <div class="Servicios-group">
+
+                <div class="Servicios-1">
+                    <img src="imagenes/i1.svg" alt="">
+                    <h3>Servicio 1</h3>
+
+                </div>
+                <div class="Servicios-1">
+                    <img src="imagenes/i1.svg" alt="">
+                    <h3>Servicio 2</h3>
+
+                </div>
+                <div class="Servicios-1">
+                    <img src="imagenes/i1.svg" alt="">
+                    <h3>Servicio 3</h3>
+
+                </div>
+
+            </div>
+            
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Et ipsam ratione praesentium sapiente, 
+                laudantium cum natus itaque eligendi animi facere 
+                temporibus mollitia omnis quasi quis nulla numquam nobis dicta beatae!
+            </p>
+            <a href="#" class="btn-1">Informacion</a>
+        </div>
+
+    </main>
+
+
+    <section class="general"><!--Creamos una seccion nueav en la parte de abajo-->
+
+        <div class="general-1">
+                <h2>generales</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Et ipsam ratione praesentium sapiente, 
+                    laudantium cum natus itaque eligendi animi facere 
+                    temporibus mollitia omnis quasi quis nulla numquam nobis dicta beatae!
+                </p>
+                <a href="#" class="btn-1">Informacion</a>
+        </div>
+        <div class="general-2"></div>
+
+    </section>
+
+    <section class="general"><!--Creamos una seccion nueav en la parte de abajo-->
+        <div class="general-3"></div>
+
+        <div class="general-1">
+                <h2>generales</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Et ipsam ratione praesentium sapiente, 
+                    laudantium cum natus itaque eligendi animi facere 
+                    temporibus mollitia omnis quasi quis nulla numquam nobis dicta beatae!
+                </p>
+                <a href="#" class="btn-1">Informacion</a>
+        </div>
+        
+
+    </section>
+
+    <section class="blog container">
+        <h2>Blog</h2>
+        <p>Et ipsam ratione praesentium sapiente, 
+            laudantium cum natus itaque eligendi animi facere 
+            temporibus mollitia omnis quasi quis nulla numquam nobis dicta beatae!
+        </p>
+        
+        <div class="blog-content">
+            <div class="blog-1">
+
+                <img src="imagenes/blog1.png" alt="">
+                <h3>Blog 1</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                    Nisi magni distinctio aliquid perspiciatis saepe. 
+                    Sequi, sint asperiores possimus quaerat corrupti, 
+                    distinctio facilis voluptatem minima consequatur officiis a dolorem? Sint, illum?
+                </p>
+
+            </div>
+            <div class="blog-1">
+
+                <img src="imagenes/blog2.png" alt="">
+                <h3>Blog 2</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                    Nisi magni distinctio aliquid perspiciatis saepe. 
+                    Sequi, sint asperiores possimus quaerat corrupti, 
+                    distinctio facilis voluptatem minima consequatur officiis a dolorem? Sint, illum?
+                </p>
+
+            </div>
+            <div class="blog-1">
+
+                <img src="imagenes/blog3.png" alt="">
+                <h3>Blog 3</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                    Nisi magni distinctio aliquid perspiciatis saepe. 
+                    Sequi, sint asperiores possimus quaerat corrupti, 
+                    distinctio facilis voluptatem minima consequatur officiis a dolorem? Sint, illum?
+                </p>
+
+            </div>
+
+        </div>
+        <a href="#"class="btn-1">Informacion</a>
+    </section>
+
+
+    <!-- El footer es esa parte de abajo donde se pone información importante, como:
+    📌 Quién hizo la página
+        📌 Enlaces a otras partes de la web
+        📌 Contacto o redes sociales
+        📌 Derechos de autor (©)-->
+
+    <footer class="footer">
+        <div class="footer-content container">
+
+            <div class="link">
+                <h3>Lorem</h3>
+                <ul>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                </ul>
+
+            </div>
+            <div class="link">
+                <h3>Lorem</h3>
+                <ul>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                </ul>
+
+            </div>
+            <div class="link">
+                <h3>Lorem</h3>
+                <ul>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                </ul>
+
+            </div>
+            <div class="link">
+                <h3>Lorem</h3>
+                <ul>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        
+
+    </footer>
+
+
+
+   
+
+
+</body> <!--Cierra la sección <body>.-->
+</html> <!--Cierra el documento HTML.-->
