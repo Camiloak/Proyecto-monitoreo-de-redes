@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Prueba - Comunidad</title>
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff4500;
+            --secondary: #0079d3;
+            --dark-bg: #1a1a1b;
+            --light-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-primary: #222222;
+            --text-secondary: #787c7e;
+            --border: #e0e0e0;
+            --upvote: #ff4500;
+            --downvote: #7193ff;
+            --comment-level-1: #f8f9fa;
+            --comment-level-2: #f0f2f5;
+            --comment-level-3: #e9ebee;
+        }
+
+        /* Estilos generales */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Header estilo Reddit */
+        .header {
+            background-color: var(--card-bg);
+            height: 56px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header__logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .header__logo-icon {
+            color: var(--primary);
+            font-size: 32px;
+            margin-right: 8px;
+        }
+
+        .header__logo-text {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 20px;
+        }
+
+        .header__search {
+            flex-grow: 1;
+            max-width: 600px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .header__search-input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            background-color: #f6f7f8;
+            font-size: 14px;
+        }
+
+        .header__search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .header__actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .header__button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            margin-left: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .header__button:hover {
+            background-color: #e03a00;
+        }
+
+        /* Layout principal */
+        .main-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            gap: 24px;
+        }
+
+        .content {
+            flex: 1;
+            max-width: 740px;
+        }
+
+        .sidebar {
+            width: 312px;
+        }
+
+        /* Tarjeta de publicación */
+        .post {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            margin-bottom: 16px;
+            overflow: hidden;
+            display: flex;
+            transition: box-shadow 0.2s;
+        }
+
+        .post:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+        }
+
+        .post__vote {
+            background-color: #f8f9fa;
+            padding: 8px 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 40px;
+        }
+
+        .post__vote-button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 20px;
+            padding: 4px;
+        }
+
+        .post__vote-button--up:hover {
+            color: var(--upvote);
+        }
+
+        .post__vote-button--down:hover {
+            color: var(--downvote);
+        }
+
+        .post__vote-count {
+            font-weight: 700;
+            font-size: 14px;
+            margin: 4px 0;
+        }
+
+        .post__content {
+            padding: 12px;
+            flex-grow: 1;
+        }
+
+        .post__header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .post__community {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-right: 5px;
+        }
+
+        .post__meta {
+            color: var(--text-secondary);
+        }
+
+        .post__title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .post__text {
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .post__image {
+            max-width: 100%;
+            max-height: 512px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        .post__footer {
+            display: flex;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .post__action {
+            display: flex;
+            align-items: center;
+            margin-right: 16px;
+            cursor: pointer;
+        }
+
+        .post__action-icon {
+            margin-right: 6px;
+            font-size: 16px;
+        }
+
+        /* Sección de comentarios */
+        .comments {
+            margin-top: 24px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .comments__header {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .comments__count {
+            margin-left: 8px;
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .comment-form {
+            margin-bottom: 24px;
+        }
+
+        .comment-form__textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            min-height: 100px;
+            margin-bottom: 12px;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .comment-form__button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .comment-form__button:hover {
+            background-color: #e03a00;
+        }
+
+        .comment {
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .comment--level-1 {
+            background-color: var(--comment-level-1);
+            margin-left: 0;
+        }
+
+        .comment--level-2 {
+            background-color: var(--comment-level-2);
+            margin-left: 32px;
+        }
+
+        .comment--level-3 {
+            background-color: var(--comment-level-3);
+            margin-left: 64px;
+        }
+
+        .comment__header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .comment__author {
+            font-weight: 600;
+            margin-right: 8px;
+            color: var(--text-primary);
+        }
+
+        .comment__meta {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .comment__content {
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .comment__actions {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .comment__action {
+            margin-right: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .comment__action-icon {
+            margin-right: 4px;
+            font-size: 14px;
+        }
+
+        .comment__vote {
+            display: flex;
+            align-items: center;
+            margin-right: 16px;
+        }
+
+        .comment__vote-button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 2px;
+        }
+
+        .comment__vote-button--up:hover {
+            color: var(--upvote);
+        }
+
+        .comment__vote-button--down:hover {
+            color: var(--downvote);
+        }
+
+        .comment__vote-count {
+            margin: 0 6px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        /* Sidebar */
+        .sidebar__card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .sidebar__header {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px;
+            font-weight: 600;
+        }
+
+        .sidebar__content {
+            padding: 12px;
+        }
+
+        .sidebar__community {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+        }
+
+        .sidebar__community-icon {
+            width: 32px;
+            height: 32px;
+            background-color: #0079d3;
+            border-radius: 50%;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .sidebar__community-name {
+            font-weight: 600;
+        }
+
+        .sidebar__button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.2s;
+        }
+
+        .sidebar__button:hover {
+            background-color: #e03a00;
+        }
+
+        /* Modales mejorados */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal__content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .modal__title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal__input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .modal__button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 16px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .modal__button:hover {
+            background-color: #e03a00;
+        }
+
+        .modal__link {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .modal__close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 960px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .content {
+                max-width: 100%;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header {
+                padding: 0 10px;
+            }
+            
+            .header__logo-text {
+                display: none;
+            }
+            
+            .header__search {
+                margin: 0 10px;
+            }
+
+            .comment--level-2 {
+                margin-left: 16px;
+            }
+
+            .comment--level-3 {
+                margin-left: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header estilo Reddit -->
+    <header class="header">
+        <a href="#" class="header__logo">
+            <i class="fas fa-reddit-alien header__logo-icon"></i>
+            <span class="header__logo-text">Web Prueba</span>
+        </a>
+        
+        <div class="header__search">
+            <i class="fas fa-search header__search-icon"></i>
+            <input type="text" class="header__search-input" placeholder="Buscar en Web Prueba" id="searchInput">
+        </div>
+        
+        <div class="header__actions">
+            <button class="header__button" onclick="openModal('loginModal')">Iniciar sesión</button>
+            <button class="header__button" onclick="openModal('registerModal')">Registrarse</button>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <div class="main-container">
+        <!-- Feed de publicaciones -->
+        <div class="content">
+            <!-- Tarjeta de publicación 1 -->
+            <div class="post">
+                <div class="post__vote">
+                    <button class="post__vote-button post__vote-button--up">
+                        <i class="fas fa-arrow-up"></i>
+                    </button>
+                    <span class="post__vote-count">4.2k</span>
+                    <button class="post__vote-button post__vote-button--down">
+                        <i class="fas fa-arrow-down"></i>
+                    </button>
+                </div>
+                <div class="post__content">
+                    <div class="post__header">
+                        <span class="post__community">r/programacion</span>
+                        <span class="post__meta">• Publicado por u/dev_user hace 5 horas</span>
+                    </div>
+                    <h3 class="post__title">Cómo mejorar tus habilidades en JavaScript: 10 consejos prácticos</h3>
+                    <p class="post__text">Después de años trabajando con JavaScript, he recopilado estos consejos que me hubiera gustado saber cuando empecé...</p>
+                    <img src="https://via.placeholder.com/600x300" alt="Placeholder" class="post__image">
+                    <div class="post__footer">
+                        <div class="post__action">
+                            <i class="far fa-comment post__action-icon"></i>
+                            <span>423 comentarios</span>
+                        </div>
+                        <div class="post__action">
+                            <i class="fas fa-share post__action-icon"></i>
+                            <span>Compartir</span>
+                        </div>
+                        <div class="post__action">
+                            <i class="far fa-bookmark post__action-icon"></i>
+                            <span>Guardar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de comentarios -->
+            <div class="comments">
+                <h3 class="comments__header">
+                    Comentarios
+                    <span class="comments__count">423</span>
+                </h3>
+
+                <!-- Formulario para nuevo comentario -->
+                <div class="comment-form">
+                    <textarea class="comment-form__textarea" placeholder="¿Qué piensas?"></textarea>
+                    <button class="comment-form__button">Comentar</button>
+                </div>
+
+                <!-- Lista de comentarios -->
+                <div class="comments-list">
+                    <!-- Comentario nivel 1 -->
+                    <div class="comment comment--level-1">
+                        <div class="comment__header">
+                            <span class="comment__author">u/experto_js</span>
+                            <span class="comment__meta">• hace 3 horas • 124 votos</span>
+                        </div>
+                        <div class="comment__content">
+                            Excelente post. Solo añadiría que es fundamental entender el asincronismo en JS, muchos desarrolladores tienen problemas con eso al principio.
+                        </div>
+                        <div class="comment__actions">
+                            <div class="comment__vote">
+                                <button class="comment__vote-button comment__vote-button--up">
+                                    <i class="fas fa-arrow-up"></i>
+                                </button>
+                                <span class="comment__vote-count">124</span>
+                                <button class="comment__vote-button comment__vote-button--down">
+                                    <i class="fas fa-arrow-down"></i>
+                                </button>
+                            </div>
+                            <div class="comment__action">
+                                <i class="far fa-comment comment__action-icon"></i>
+                                <span>Responder</span>
+                            </div>
+                            <div class="comment__action">
+                                <i class="fas fa-share comment__action-icon"></i>
+                                <span>Compartir</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comentario nivel 2 (respuesta) -->
+                    <div class="comment comment--level-2">
+                        <div class="comment__header">
+                            <span class="comment__author">u/dev_user</span>
+                            <span class="comment__meta">• OP • hace 2 horas • 89 votos</span>
+                        </div>
+                        <div class="comment__content">
+                            Totalmente de acuerdo. De hecho, el punto 7 de mi lista original hablaba de eso, pero lo eliminé para no hacer el post muy largo. Prometo hacer una segunda parte profundizando en asincronismo.
+                        </div>
+                        <div class="comment__actions">
+                            <div class="comment__vote">
+                                <button class="comment__vote-button comment__vote-button--up">
+                                    <i class="fas fa-arrow-up"></i>
+                                </button>
+                                <span class="comment__vote-count">89</span>
+                                <button class="comment__vote-button comment__vote-button--down">
+                                    <i class="fas fa-arrow-down"></i>
+                                </button>
+                            </div>
+                            <div class="comment__action">
+                                <i class="far fa-comment comment__action-icon"></i>
+                                <span>Responder</span>
+                            </div>
+                            <div class="comment__action">
+                                <i class="fas fa-share comment__action-icon"></i>
+                                <span>Compartir</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comentario nivel 3 (respuesta a respuesta) -->
+                    <div class="comment comment--level-3">
+                        <div class="comment__header">
+                            <span class="comment__author">u/novato_js</span>
+                            <span class="comment__meta">• hace 1 hora • 45 votos</span>
+                        </div>
+                        <div class="comment__content">
+                            Estaría genial esa segunda parte. Aún no entiendo bien la diferencia entre Promises y async/await.
+                        </div>
+                        <div class="comment__actions">
+                            <div class="comment__vote">
+                                <button class="comment__vote-button comment__vote-button--up">
+                                    <i class="fas fa-arrow-up"></i>
+                                </button>
+                                <span class="comment__vote-count">45</span>
+                                <button class="comment__vote-button comment__vote-button--down">
+                                    <i class="fas fa-arrow-down"></i>
+                                </button>
+                            </div>
+                            <div class="comment__action">
+                                <i class="far fa-comment comment__action-icon"></i>
+                                <span>Responder</span>
+                            </div>
+                            <div class="comment__action">
+                                <i class="fas fa-share comment__action-icon"></i>
+                                <span>Compartir</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Otro comentario nivel 1 -->
+                    <div class="comment comment--level-1">
+                        <div class="comment__header">
+                            <span class="comment__author">u/web_developer</span>
+                            <span class="comment__meta">• hace 4 horas • 76 votos</span>
+                        </div>
+                        <div class="comment__content">
+                            Muy buen resumen. Para los que empiezan, recomendaría también aprender bien los fundamentos antes de saltar a frameworks como React o Vue.
+                        </div>
+                        <div class="comment__actions">
+                            <div class="comment__vote">
+                                <button class="comment__vote-button comment__vote-button--up">
+                                    <i class="fas fa-arrow-up"></i>
+                                </button>
+                                <span class="comment__vote-count">76</span>
+                                <button class="comment__vote-button comment__vote-button--down">
+                                    <i class="fas fa-arrow-down"></i>
+                                </button>
+                            </div>
+                            <div class="comment__action">
+                                <i class="far fa-comment comment__action-icon"></i>
+                                <span>Responder</span>
+                            </div>
+                            <div class="comment__action">
+                                <i class="fas fa-share comment__action-icon"></i>
+                                <span>Compartir</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Comunidades populares -->
+            <div class="sidebar__card">
+                <div class="sidebar__header">
+                    Comunidades populares
+                </div>
+                <div class="sidebar__content">
+                    <div class="sidebar__community">
+                        <div class="sidebar__community-icon">r/</div>
+                        <div class="sidebar__community-name">r/programacion</div>
+                    </div>
+                    <div class="sidebar__community">
+                        <div class="sidebar__community-icon">r/</div>
+                        <div class="sidebar__community-name">r/tecnologia</div>
+                    </div>
+                    <div class="sidebar__community">
+                        <div class="sidebar__community-icon">r/</div>
+                        <div class="sidebar__community-name">r/javascript</div>
+                    </div>
+                    <button class="sidebar__button">Ver todas</button>
+                </div>
+            </div>
+
+            <!-- Reglas de la comunidad -->
+            <div class="sidebar__card">
+                <div class="sidebar__header">
+                    Reglas de la comunidad
+                </div>
+                <div class="sidebar__content">
+                    <ol style="padding-left: 20px; font-size: 14px;">
+                        <li>Sé respetuoso con otros usuarios</li>
+                        <li>No spam ni autopromoción excesiva</li>
+                        <li>Publica contenido relevante</li>
+                        <li>Usa títulos descriptivos</li>
+                        <li>No información personal</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Modal de inicio de sesión mejorado -->
+<!-- Modal de inicio de sesión -->
+<div id="loginModal" class="modal" style="display:none;">
+    <div class="modal__content">
+        <span class="modal__close" onclick="closeModal('loginModal')">&times;</span>
+        <h3 class="modal__title">Iniciar sesión</h3>
+        <form id="loginForm" method="POST" action="/login">
+            <!-- El campo puede ser email o username (el backend acepta ambos) -->
+            <input type="text" name="email" class="modal__input" placeholder="Email o nombre de usuario" required>
+            <input type="password" name="password" class="modal__input" placeholder="Contraseña" required>
+            <button type="submit" class="modal__button">Continuar</button>
+        </form>
+        <a href="#" class="modal__link" onclick="openModal('registerModal'); closeModal('loginModal'); return false;">¿Nuevo en Web Prueba? Regístrate</a>
+    </div>
+</div>
+
+<!-- Modal de registro -->
+<div id="registerModal" class="modal" style="display:none;">
+    <div class="modal__content">
+        <span class="modal__close" onclick="closeModal('registerModal')">&times;</span>
+        <h3 class="modal__title">Crear una cuenta</h3>
+        <form id="registerForm" method="POST" action="/register">
+            <input type="text" name="username" class="modal__input" placeholder="Nombre de usuario" required>
+            <input type="email" name="email" class="modal__input" placeholder="Email" required>
+            <input type="password" name="password" class="modal__input" placeholder="Contraseña" required>
+            <input type="password" name="confirm_password" class="modal__input" placeholder="Confirmar contraseña" required>
+            <button type="submit" class="modal__button">Registrarse</button>
+        </form>
+        <a href="#" class="modal__link" onclick="openModal('loginModal'); closeModal('registerModal'); return false;">¿Ya tienes una cuenta? Inicia sesión</a>
+    </div>
+</div>
+
+
+<script>
+function openModal(id) {
+    document.getElementById('loginModal').style.display = 'none';
+    document.getElementById('registerModal').style.display = 'none';
+    document.getElementById(id).style.display = 'block';
+}
+function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+}
+</script>
+
+
+    <script>
+        // Función para abrir modales
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Evita el scroll
+        }
+
+        // Función para cerrar modales
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura el scroll
+        }
+
+        // Cerrar modal al hacer clic fuera del contenido
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    closeModal(modal.id);
+                }
+            });
+        }
+
+        // Función de búsqueda mejorada
+        function search() {
+            const input = document.getElementById('searchInput').value.trim();
+            if (input) {
+                alert('Buscando: ' + input);
+                // Aquí iría la lógica real de búsqueda
+            }
+        }
+
+        // Sistema de votación para posts
+        document.querySelectorAll('.post__vote-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const post = this.closest('.post');
+                const countElement = post.querySelector('.post__vote-count');
+                let count = parseInt(countElement.textContent.replace(/[^\d]/g, '')) || 0;
+                
+                if (this.classList.contains('post__vote-button--up')) {
+                    count += 1;
+                } else if (this.classList.contains('post__vote-button--down')) {
+                    count -= 1;
+                }
+                
+                countElement.textContent = formatCount(count);
+            });
+        });
+
+        // Sistema de votación para comentarios
+        document.querySelectorAll('.comment__vote-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const comment = this.closest('.comment');
+                const countElement = comment.querySelector('.comment__vote-count');
+                let count = parseInt(countElement.textContent) || 0;
+                
+                if (this.classList.contains('comment__vote-button--up')) {
+                    count += 1;
+                } else if (this.classList.contains('comment__vote-button--down')) {
+                    count -= 1;
+                }
+                
+                countElement.textContent = count;
+            });
+        });
+
+        // Formatear números como en Reddit (1k, 2.5k, etc.)
+        function formatCount(num) {
+            if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'k';
+            }
+            return num.toString();
+        }
+
+        // Sistema de comentarios
+        document.querySelector('.comment-form__button').addEventListener('click', function() {
+            const textarea = document.querySelector('.comment-form__textarea');
+            const commentText = textarea.value.trim();
+            
+            if (commentText) {
+                // Aquí iría la lógica para agregar el comentario al sistema
+                alert('Comentario enviado: ' + commentText);
+                textarea.value = '';
+                
+                // En una implementación real, aquí se agregaría el nuevo comentario al DOM
+                // y se enviaría al servidor
+            } else {
+                alert('Por favor escribe un comentario');
+            }
+        });
+    </script>
+</body>
+</html>
