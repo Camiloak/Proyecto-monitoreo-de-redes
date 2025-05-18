@@ -1,0 +1,283 @@
+<!DOCTYPE HTML5> <!--Declara el tipo de documento como HTML5, lo que ayuda al navegador a interpretar correctamente el código.-->
+<html lang="en">    <!--Inicia el documento HTML y establece el idioma principal de la página en inglés -->
+<head>  <!--Define la sección de la cabecera del documento, que contiene metadatos y enlaces a recursos externos.-->
+    <meta charset="UTF-8">  <!--Define la sección de la cabecera del documento, que contiene metadatos y enlaces a recursos externos.-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Define la configuración de la vista en dispositivos móviles, asegurando que el ancho del contenido se ajuste al tamaño de la pantalla y que la escala inicial sea 1.0.-->
+    <title>CibersecurityAI</title> <!--Define el título de la página, que aparece en la pestaña del navegador.-->
+    <link rel="stylesheet" href="style.css"> <!--Enlaza un archivo de hoja de estilos CSS (style.css), el cual se usará para definir la apariencia de la página.-->
+
+
+</head> <!--Cierra la sección <head>.-->
+<body> <!--Inicia la sección del cuerpo del documento, donde se incluirá el contenido visible de la página.--> 
+    
+    <header class="header"> <!--Define el encabezado de la página y le asigna la clase header, lo que permite aplicarle estilos con CSS.-->
+       
+        <div class="menu container"> <!--Este es un contenedor del menu que contendra todo para dar los estilos del menu de la pagina-->
+            <a href="#" class="Logo">Universidad Catolica de Colombia</a><!-- <a> → Es un enlace (como cuando haces clic en algo y te lleva a otra página).
+                href="#" → El # significa que, por ahora, el enlace no lleva a ningún lado (es un lugar vacío).
+                class="Logo" → "Logo" es un nombre que podemos usar en CSS para cambiar su estilo (como ponerle color o hacerlo más grande).
+                Logo → Es el texto que se verá en la página (puodemos cambiarlo por el nombre de nuestro sitio, por ejemplo, "Mi Página").
+                -->
+            <input type="checkbox" id="menu"/> <!--Un input de tipo checkbox, que se usa en menús de navegación responsivos para controlar si el menú está abierto o cerrado.-->
+            <label for="menu"> <!--Este label está asociado con el checkbox (id="menu"), permitiendo que al hacer clic en la imagen del menú se active el checkbox.-->
+                <img src="imagenes/menu.png" class="menu-icono" alt=""> <!--Inserta una imagen de menu.png-->
+            </label><!--Cierra la etiqueta label.-->
+            <nav class="navbar"> <!--Definimos una barra de navegación con la clase navbar.-->
+                <ul> <!--Inicia una lista desordenada (ul) para los elementos del menú.-->
+                    <li><a href="#">Inicio</a></li> <!--Creamos un enlace de Inicio-->
+                    <li><a href="#">Servicios</a></li> <!--Creamos un enlace de Servicios-->
+                    <li><a href="#">Seguridad</a></li> <!--Creamos un enlace de Seguridad-->
+                    <li><a href="#">Contacto</a></li> <!--Creamos un enlace de Contacto-->
+
+                </ul> <!--Cierra la lista del menú. -->
+
+
+            </nav> <!--Cierra la barra de navegacion-->
+
+          
+        </div> <!--Cierra el div contenedor del menú.-->
+
+
+        <div class="header-content container"> <!--Este va a ser nuestro contenedor de titulo y parrafo-->
+
+            <h1>CyberSecurity AI</h1><!--Titulo-->
+            <p><!--Parrafo-->
+                En CyberSecurity AI, protegemos tu negocio con tecnología de vanguardia. Nuestra inteligencia artificial detecta, responde y elimina amenazas informáticas en tiempo real, antes de que causen daño.
+                Confía en una solución automática, precisa y siempre activa.
+                No más ataques. Solo tranquilidad.
+
+
+
+            </p>
+            <a href="ataques.html"class="btn-1">Simulacion</a> <!--Creamos un enlace de Informacion-->
+
+        </div>
+
+    </header> <!--Cierra el encabezado-->
+
+
+
+    <section class="IA"><!--Creamos la seccion donde iran las imagenes y textos de cada uno de los tipos de ataquer ciberneticos-->
+
+        <img class="IA-img" src="imagenes/imageniniciopng.png" alt="">
+
+        <div class="IA-content container"><!--Clase para contenedor de primera imagen con su parrafo-->
+
+            <h2>Diferentes tipos de ataques</h2>
+            <p class="txt-p">
+                Los ataques informáticos más comunes incluyen el phishing, que busca robar datos mediante engaños; el malware, 
+                que daña o secuestra información; los ataques DDoS, 
+                que saturan servidores; y la inyección SQL, usada para acceder a bases de datos. 
+                También destacan la fuerza bruta y la ingeniería social, que intentan obtener contraseñas o información confidencial.
+            </p>
+
+            <div class="IA-group"><!--Clase para contenedor de las tres imagenes siguientes imagen con su parrafo-->
+
+
+                <div class="IA-1">   
+                    <img src="imagenes/ChatGPT Image 7 abr 2025, 04_33_55 p.m..png" alt="">
+                    <h3>Phishing</h3>
+                    <p>
+                        Es un tipo de engaño donde el atacante suplanta la identidad de una entidad confiable (como un banco) para que el usuario entregue información personal, 
+                        como contraseñas o datos bancarios, generalmente a través de correos o páginas falsas.
+                    </p>
+                </div>
+                <div class="IA-1">   
+                    <img src="imagenes/chatGPT Image 7 abr 2025, 04_35_11 p.m..png" alt="">
+                    <h3>Inyección SQL</h3>
+                    <p>
+                        Este ataque consiste en insertar código malicioso dentro de formularios o URLs para manipular bases de datos. Permite al atacante ver, modificar o eliminar información sin autorización, 
+                        aprovechando fallos en la validación de datos en aplicaciones web.
+                    </p>
+                </div>
+                <div class="IA-1">   
+                    <img src="imagenes/CHAtGPT Image 7 abr 2025, 04_37_51 p.m..png" alt="">
+                    <h3>Malware</h3>
+                    <p>
+                        Es un software malicioso diseñado para dañar, espiar o secuestrar sistemas. Puede presentarse como virus, troyanos o ransomware, y suele instalarse sin que el usuario lo note, 
+                        al descargar archivos sospechosos o visitar sitios comprometidos.
+                    </p>
+                </div>
+            
+               
+            </div>
+            <a href="https://proyecto-monitoreo-de-redes-11.onrender.com" class="btn-1">Pagina vulnerable</a><!--Creamos el enlace de Informacion-->
+        </div>
+
+
+    </section>
+
+    <main class="Servicios"><!--Aqui ira la informacion principal de nuestra pagina-->
+
+        <div class="Servicios-content container">
+            <h2>Servicios que ofrecemos</h2>
+
+            <div class="Servicios-group">
+
+                <div class="Servicios-1">
+                    <img src="imagenes/i1.svg" alt="">
+                    <h3>Identificamos el ataque</h3>
+
+                </div>
+                <div class="Servicios-1">
+                    <img src="imagenes/i1.svg" alt="">
+                    <h3>Solucionamos la amenaza</h3>
+
+                </div>
+                <div class="Servicios-1">
+                    <img src="imagenes/i1.svg" alt="">
+                    <h3>Seguridad en sus sistema</h3>
+
+                </div>
+
+            </div>
+            
+            <p>
+                En CyberSecurity AI utilizamos inteligencia artificial avanzada para detectar, neutralizar y eliminar ciberataques en tiempo real.
+                Proteja su información con una solución confiable, automatizada y siempre activa
+            </p>
+            <a href="#" class="btn-1">Informacion</a>
+        </div>
+
+    </main>
+
+
+    <section class="general"><!--Creamos una seccion nueav en la parte de abajo-->
+
+        <div class="general-1">
+                <h2>MISION</h2>
+                <p>
+                    Proteger a empresas y organizaciones mediante soluciones de ciberseguridad impulsadas por inteligencia artificial, capaces de detectar, prevenir y 
+                    neutralizar amenazas en tiempo real. 
+                    Nos comprometemos a ofrecer protección automática, precisa y constante, 
+                    garantizando la tranquilidad de nuestros clientes frente a cualquier ataque digital.
+                   
+                </p>
+               
+        </div>
+        <div class="general-2"></div>
+
+    </section>
+
+    <section class="general"><!--Creamos una seccion nueav en la parte de abajo-->
+        <div class="general-3"></div>
+
+        <div class="general-1">
+                <h2>VISION</h2>
+                <p>
+                    Ser líderes globales en ciberseguridad inteligente, revolucionando la forma en que el mundo se protege en línea, con tecnologías autónomas 
+                    que anticipan riesgos y aseguran un entorno digital más seguro para todos.
+
+
+                    
+                </p>
+               
+        </div>
+        
+
+    </section>
+
+    <section class="blog container">
+        <h2>Confianza</h2>
+        <p>✅ Empresas reales. Resultados reales. Seguridad comprobada.
+
+        </p>
+        
+        <div class="blog-content">
+            <div class="blog-1">
+
+                <img src="imagenes/mujer.png" alt="">
+                <h3>Blog 1</h3>
+                <p>🔒 María López — CEO de FinTechPro
+                    “Antes de CyberSecurity AI, sufrimos tres ataques en menos de seis meses. 
+                    Desde que usamos su tecnología, no hemos tenido ni una sola intrusión. Es como tener un guardia 24/7 cuidando nuestros datos.”
+                </p>
+
+            </div>
+            <div class="blog-1">
+
+                <img src="imagenes/parcero.png" alt="">
+                <h3>Blog 2</h3>
+                <p>🔐 Javier Torres — Director de Sistemas en GlobalMarket
+                    “La respuesta automática de su IA nos salvó de un ransomware. Literalmente detectó y bloqueó el intento en segundos. Esta plataforma se paga sola.”
+                </p>
+
+            </div>
+            <div class="blog-1">
+
+                <img src="imagenes/vieja.png" alt="">
+                <h3>Blog 3</h3>
+                <p>🧠 Lucía Rivas — Fundadora de EduTech360
+                    “Me encanta que no necesito ser experta en ciberseguridad. Su sistema hace todo por mí y me mantiene informada con alertas claras y precisas. ¡Es tranquilidad pura!”
+                </p>
+
+            </div>
+
+        </div>
+        <a href="#"class="btn-1">Informacion</a>
+    </section>
+
+
+    <!-- El footer es esa parte de abajo donde se pone información importante, como:
+    📌 Quién hizo la página
+        📌 Enlaces a otras partes de la web
+        📌 Contacto o redes sociales
+        📌 Derechos de autor (©)-->
+
+    <footer class="footer">
+        <div class="footer-content container">
+
+            <div class="link">
+                <h3>Lorem</h3>
+                <ul>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                </ul>
+
+            </div>
+            <div class="link">
+                <h3>Lorem</h3>
+                <ul>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                </ul>
+
+            </div>
+            <div class="link">
+                <h3>Lorem</h3>
+                <ul>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                </ul>
+
+            </div>
+            <div class="link">
+                <h3>Lorem</h3>
+                <ul>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        
+
+    </footer>
+
+
+
+   
+
+
+</body> <!--Cierra la sección <body>.-->
+</html> <!--Cierra el documento HTML.-->
