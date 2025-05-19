@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Prueba - Comunidad</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <a href="#" class="header__logo">
+      <i class="fas fa-reddit-alien header__logo-icon"></i>
+      <span class="header__logo-text">Web Prueba</span>
+    </a>
+    <div class="header__search">
+      <i class="fas fa-search header__search-icon"></i>
+      <input type="text" class="header__search-input" placeholder="Buscar en Web Prueba" id="searchInput">
+    </div>
+    <div class="header__actions">
+      <button class="header__button" data-open-modal="loginModal">Iniciar sesión</button>
+      <button class="header__button" data-open-modal="registerModal">Registrarse</button>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <section class="content">
+      <article class="post" data-votable>
+        <aside class="post__vote">
+          <button class="post__vote-button post__vote-button--up"><i class="fas fa-arrow-up"></i></button>
+          <span class="post__vote-count">4.2k</span>
+          <button class="post__vote-button post__vote-button--down"><i class="fas fa-arrow-down"></i></button>
+        </aside>
+        <div class="post__content">
+          <header class="post__header">
+            <span class="post__community">r/programacion</span>
+            <span class="post__meta">• Publicado por u/dev_user hace 5 horas</span>
+          </header>
+          <h3 class="post__title">Cómo mejorar tus habilidades en JavaScript: 10 consejos prácticos</h3>
+          <p class="post__text">Después de años trabajando con JavaScript, he recopilado estos consejos que me hubiera gustado saber cuando empecé...</p>
+          <img src="https://via.placeholder.com/600x300" alt="Post Image" class="post__image">
+          <footer class="post__footer">
+            <div class="post__action"><i class="far fa-comment post__action-icon"></i><span>423 comentarios</span></div>
+            <div class="post__action"><i class="fas fa-share post__action-icon"></i><span>Compartir</span></div>
+            <div class="post__action"><i class="far fa-bookmark post__action-icon"></i><span>Guardar</span></div>
+          </footer>
+        </div>
+      </article>
+
+      <section class="comments">
+        <h3 class="comments__header">Comentarios <span class="comments__count">423</span></h3>
+        <div class="comment-form">
+          <textarea class="comment-form__textarea" placeholder="¿Qué piensas?"></textarea>
+          <button class="comment-form__button">Comentar</button>
+        </div>
+        <div class="comments-list">
+          <div class="comment comment--level-1" data-votable>
+            <div class="comment__header">
+              <span class="comment__author">u/experto_js</span>
+              <span class="comment__meta">• hace 3 horas • 124 votos</span>
+            </div>
+            <div class="comment__content">Excelente post. Solo añadiría que es fundamental entender el asincronismo en JS...</div>
+            <div class="comment__actions">
+              <div class="comment__vote">
+                <button class="comment__vote-button comment__vote-button--up"><i class="fas fa-arrow-up"></i></button>
+                <span class="comment__vote-count">124</span>
+                <button class="comment__vote-button comment__vote-button--down"><i class="fas fa-arrow-down"></i></button>
+              </div>
+              <div class="comment__action"><i class="far fa-comment comment__action-icon"></i><span>Responder</span></div>
+              <div class="comment__action"><i class="fas fa-share comment__action-icon"></i><span>Compartir</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <aside class="sidebar">
+      <div class="sidebar__card">
+        <div class="sidebar__header">Comunidades populares</div>
+        <div class="sidebar__content">
+          <div class="sidebar__community"><div class="sidebar__community-icon">r/</div><div class="sidebar__community-name">r/programacion</div></div>
+          <div class="sidebar__community"><div class="sidebar__community-icon">r/</div><div class="sidebar__community-name">r/tecnologia</div></div>
+          <div class="sidebar__community"><div class="sidebar__community-icon">r/</div><div class="sidebar__community-name">r/javascript</div></div>
+          <button class="sidebar__button">Ver todas</button>
+        </div>
+      </div>
+
+      <div class="sidebar__card">
+        <div class="sidebar__header">Reglas de la comunidad</div>
+        <div class="sidebar__content">
+          <ol class="rules-list">
+            <li>Sé respetuoso con otros usuarios</li>
+            <li>No spam ni autopromoción excesiva</li>
+            <li>Publica contenido relevante</li>
+            <li>Usa títulos descriptivos</li>
+            <li>No información personal</li>
+          </ol>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <div id="loginModal" class="modal">
+    <div class="modal__content">
+      <span class="modal__close" data-close-modal="loginModal">&times;</span>
+      <h3 class="modal__title">Iniciar sesión</h3>
+      <input type="email" class="modal__input" placeholder="Email" required>
+      <input type="password" class="modal__input" placeholder="Contraseña" required>
+      <button class="modal__button">Continuar</button>
+      <a href="#" class="modal__link" data-open-modal="registerModal">¿Nuevo en Web Prueba? Regístrate</a>
+    </div>
+  </div>
+
+  <div id="registerModal" class="modal">
+    <div class="modal__content">
+      <span class="modal__close" data-close-modal="registerModal">&times;</span>
+      <h3 class="modal__title">Crear una cuenta</h3>
+      <input type="text" class="modal__input" placeholder="Nombre de usuario" required>
+      <input type="email" class="modal__input" placeholder="Email" required>
+      <input type="password" class="modal__input" placeholder="Contraseña" required>
+      <input type="password" class="modal__input" placeholder="Confirmar contraseña" required>
+      <button class="modal__button">Registrarse</button>
+      <a href="#" class="modal__link" data-open-modal="loginModal">¿Ya tienes una cuenta? Inicia sesión</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
